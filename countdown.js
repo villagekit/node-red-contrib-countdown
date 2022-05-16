@@ -113,8 +113,8 @@ module.exports = function(RED) {
 
         node.on("input", function (msg) {
             if (msg.topic === "control") {
-                if (isNumber(msg.payload) && msg.payload > 1) {
-                    timeout = Math.ceil(msg.payload);
+                if (isNumber(msg.payload)) {
+                    timeout = Math.ceil(Math.max(msg.payload, 1));
 
                     if (ticker) {
                         // countdown is running
